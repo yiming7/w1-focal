@@ -27,19 +27,18 @@ const eqArrays = function (input1, input2) {
     }
   }
   return true;
-}
+};
 
-const flatten = function (input_array) {
-  let output = [];
-  let input = input_array;
+let output = [];
+
+const flatten = function (input, output) {
   if (!Array.isArray(input)) {
-    output = input;
+    output.push(input);
   } else {
-    for (let item of input){
-      output.push(flatten(item));
+    for (let item of input) {
+      output.push(flatten(item),output);
     }
   }
-  return output;
-}
+};
 //console.log(Array.isArray([1, 2]));
-console.log(flatten([1, [2,3]]));  // => [1, 2, 3, 4, 5, 6]
+console.log(flatten([1, [2, 3]], output));  // => [1, 2, 3, 4, 5, 6]
